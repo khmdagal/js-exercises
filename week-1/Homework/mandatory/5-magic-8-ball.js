@@ -42,25 +42,72 @@ My sources say no.
 Outlook not so good.
 Very doubtful.
 */
+const veryPositive = [
+  "It is certain",
+  "It is decidedly so",
+  "Without a doubt",
+  "Yes - definitely",
+  "You may rely on it",
+];
+
+const positive = [
+  "As I see it, yes",
+  "Most likely",
+  "Outlook good",
+  "Yes",
+  "Signs point to yes",
+];
+const negative = [
+  "Reply hazy, try again",
+  "Ask again later",
+  "Better not tell you now",
+  "Cannot predict now",
+  "Concentrate and ask again",
+];
+
+const veryNegative = [
+  "Don't count on it",
+  "My reply is no",
+  "My sources say no",
+  "Outlook not so good",
+  "Very doubtful",
+];
+
+const allWords = veryPositive.concat(positive, negative, veryNegative);
 
 // This should log "The ball has shaken!"
 // and return the answer.
-function shakeBall() {}
+function shakeBall() {
+  const randomIndex = Math.floor(Math.random() * allWords.length);
+  console.log("The ball has shaken!");
+  return allWords[randomIndex];
+}
 
 // The answer should come from shaking the ball
-let answer;
+
+let answer = shakeBall();
 
 // When checking the answer, we should tell someone if the answer is
 // - very positive
 // - positive
 // - negative
 // - very negative
-function checkAnswer() {}
+function checkAnswer() {
+  if (veryPositive.includes(answer)) {
+    return "very positive";
+  } else if (positive.includes(answer)) {
+    return "positive";
+  } else if (negative.includes(answer)) {
+    return "negative";
+  } else if (veryNegative.includes(answer)) {
+    return "very negative";
+  }
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 const log = console.log;
 let logged;
-console.log = function() {
+console.log = function () {
   log(...arguments);
   logged = arguments[0];
 };
